@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE TAG employee_pii_tag
+    DESCRIPTION = 'PII information related to all internal employee';
+
