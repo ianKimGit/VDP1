@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE TAG customer_pii_tag
+    DESCRIPTION = 'Tables and columns that handles customer PII info';
+
