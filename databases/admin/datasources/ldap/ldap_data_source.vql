@@ -1,7 +1,0 @@
-﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE DATASOURCE LDAP ldap_data_source
-    URI='${databases.admin.datasources.ldap.ldap_data_source.URI}'
-    USERNAME='${databases.admin.datasources.ldap.ldap_data_source.USERNAME}'
-    USERPASSWORD='${databases.admin.datasources.ldap.ldap_data_source.USERPASSWORD}' ${databases.admin.datasources.ldap.ldap_data_source.USERPASSWORD.ENCRYPTED}
-    USEPAGING=FALSE;
-

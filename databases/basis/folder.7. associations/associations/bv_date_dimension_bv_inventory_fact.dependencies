@@ -1,7 +1,0 @@
-﻿/databases/basis/folder.7. associations/7. associations.vql
-/databases/basis/folder.1. connectivity/1. connectivity.vql
-/databases/basis/folder.1. connectivity/folder.2. baseviews/2. baseviews.vql
-/databases/basis/folder.1. connectivity/folder.1. datasource/1. datasource.vql
-/databases/basis/folder.1. connectivity/folder.1. datasource/datasources/jdbc/orabasis.vql
-/databases/basis/folder.1. connectivity/folder.2. baseviews/views/bv_date_dimension.vql
-/databases/basis/folder.1. connectivity/folder.2. baseviews/views/bv_inventory_fact.vql
