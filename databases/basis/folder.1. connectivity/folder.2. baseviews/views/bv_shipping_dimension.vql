@@ -1,0 +1,38 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_SHIPPING_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_shipping_dimension.SCHEMANAME}' 
+    RELATIONNAME='SHIPPING_DIMENSION' 
+    OUTPUTSCHEMA (
+        "SHIPPING_KEY" = 'SHIPPING_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "SHIP_TYPE" = 'SHIP_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='30', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "SHIP_MODE" = 'SHIP_MODE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "SHIP_CARRIER" = 'SHIP_CARRIER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007522' PRIMARY KEY ( 'SHIPPING_KEY' )
+    INDEX 'SYS_C007522' CLUSTER UNIQUE PRIMARY ( 'SHIPPING_KEY' );
+
+CREATE OR REPLACE TABLE "bv_SHIPPING_DIMENSION" I18N us_pst (
+        "SHIPPING_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SHIP_TYPE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '30'),
+        "SHIP_MODE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        "SHIP_CARRIER":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007522' PRIMARY KEY ( 'SHIPPING_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_SHIPPING_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "SHIPPING_KEY" (any) OPT ANY
+             ADD "SHIP_TYPE" (any) OPT ANY
+             ADD "SHIP_MODE" (any) OPT ANY
+             ADD "SHIP_CARRIER" (any) OPT ANY
+        )
+        OUTPUTLIST ("SHIPPING_KEY", "SHIP_CARRIER", "SHIP_MODE", "SHIP_TYPE"
+        )
+        WRAPPER (jdbc "bv_SHIPPING_DIMENSION")
+    );
+
