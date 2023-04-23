@@ -1,0 +1,92 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC tablea_alt_wrapper
+    FOLDER = '/1. connectivity layer/2. base views'
+    DATASOURCENAME=ds_de
+    SCHEMANAME='${databases.vdbde.folder.1.. connectivity layer.folder.2.. base views.views.jdbc.tablea_alt_wrapper.SCHEMANAME}' 
+    RELATIONNAME='TABLEA' 
+    OUTPUTSCHEMA (
+        date_key = 'DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        product_key = 'PRODUCT_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        product_version = 'PRODUCT_VERSION' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        store_key = 'STORE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        promotion_key = 'PROMOTION_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        customer_key = 'CUSTOMER_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        employee_key = 'EMPLOYEE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        pos_transaction_number = 'POS_TRANSACTION_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        sales_quantity = 'SALES_QUANTITY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        sales_dollar_amount = 'SALES_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        cost_dollar_amount = 'COST_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        gross_profit_dollar_amount = 'GROSS_PROFIT_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        transaction_type = 'TRANSACTION_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        transaction_time = 'TRANSACTION_TIME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        tender_type = 'TENDER_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='8', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE WRAPPER JDBC ds_ds_tablea_alt_wrapper
+    FOLDER = '/1. connectivity layer/2. base views'
+    DATASOURCENAME=vdbds.ds_ds
+    SCHEMANAME='${databases.vdbde.folder.1.. connectivity layer.folder.2.. base views.views.jdbc.ds_ds_tablea_alt_wrapper.SCHEMANAME}' 
+    RELATIONNAME='TABLEA' 
+    OUTPUTSCHEMA (
+        date_key = 'DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        product_key = 'PRODUCT_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        product_version = 'PRODUCT_VERSION' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        store_key = 'STORE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        promotion_key = 'PROMOTION_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        customer_key = 'CUSTOMER_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        employee_key = 'EMPLOYEE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        pos_transaction_number = 'POS_TRANSACTION_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        sales_quantity = 'SALES_QUANTITY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        sales_dollar_amount = 'SALES_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        cost_dollar_amount = 'COST_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        gross_profit_dollar_amount = 'GROSS_PROFIT_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        transaction_type = 'TRANSACTION_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        transaction_time = 'TRANSACTION_TIME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        tender_type = 'TENDER_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='8', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE tablea_alt_wrapper I18N au_cst (
+        date_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        product_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        product_version:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        store_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        promotion_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        customer_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        employee_key:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        pos_transaction_number:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        sales_quantity:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        sales_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        cost_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        gross_profit_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        transaction_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '16'),
+        transaction_time:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        tender_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '8')
+    )
+    FOLDER = '/1. connectivity layer/2. base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD tablea(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD date_key (any) OPT ANY
+             ADD product_key (any) OPT ANY
+             ADD product_version (any) OPT ANY
+             ADD store_key (any) OPT ANY
+             ADD promotion_key (any) OPT ANY
+             ADD customer_key (any) OPT ANY
+             ADD employee_key (any) OPT ANY
+             ADD pos_transaction_number (any) OPT ANY
+             ADD sales_quantity (any) OPT ANY
+             ADD sales_dollar_amount (any) OPT ANY
+             ADD cost_dollar_amount (any) OPT ANY
+             ADD gross_profit_dollar_amount (any) OPT ANY
+             ADD transaction_type (any) OPT ANY
+             ADD transaction_time (any) OPT ANY
+             ADD tender_type (any) OPT ANY
+        )
+        OUTPUTLIST (cost_dollar_amount, customer_key, date_key, employee_key, gross_profit_dollar_amount, pos_transaction_number, product_key, product_version, promotion_key, sales_dollar_amount, sales_quantity, store_key, tender_type, transaction_time, transaction_type
+        )
+        WRAPPER (jdbc tablea_alt_wrapper)
+        ALTERNATIVE_WRAPPERS (jdbc ds_ds_tablea_alt_wrapper)
+    );
+

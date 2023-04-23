@@ -1,0 +1,20 @@
+﻿CREATE OR REPLACE TABLE exceltest_linefeed I18N us_pst (
+        col1:double (sourcetypeid = '8'),
+        col2:text (sourcetypeid = '12'),
+        col3:text (sourcetypeid = '12')
+    )
+    FOLDER = '/1. connectivity layer/1. datasource'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD exceltest_linefeed(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD col1 (any) OPT ANY
+             ADD col2 (any) OPT ANY
+             ADD col3 (any) OPT ANY
+        )
+        OUTPUTLIST (col1, col2, col3
+        )
+        WRAPPER (custom exceltest_linefeed)
+    );
+
