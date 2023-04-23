@@ -1,0 +1,44 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_WAREHOUSE_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_warehouse_dimension.SCHEMANAME}' 
+    RELATIONNAME='WAREHOUSE_DIMENSION' 
+    OUTPUTSCHEMA (
+        "WAREHOUSE_KEY" = 'WAREHOUSE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "WAREHOUSE_NAME" = 'WAREHOUSE_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "WAREHOUSE_ADDRESS" = 'WAREHOUSE_ADDRESS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='256', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "WAREHOUSE_CITY" = 'WAREHOUSE_CITY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='60', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "WAREHOUSE_STATE" = 'WAREHOUSE_STATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "WAREHOUSE_REGION" = 'WAREHOUSE_REGION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007524' PRIMARY KEY ( 'WAREHOUSE_KEY' )
+    INDEX 'SYS_C007524' CLUSTER UNIQUE PRIMARY ( 'WAREHOUSE_KEY' );
+
+CREATE OR REPLACE TABLE "bv_WAREHOUSE_DIMENSION" I18N us_pst (
+        "WAREHOUSE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "WAREHOUSE_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        "WAREHOUSE_ADDRESS":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '256'),
+        "WAREHOUSE_CITY":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '60'),
+        "WAREHOUSE_STATE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '2'),
+        "WAREHOUSE_REGION":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007524' PRIMARY KEY ( 'WAREHOUSE_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_WAREHOUSE_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "WAREHOUSE_KEY" (any) OPT ANY
+             ADD "WAREHOUSE_NAME" (any) OPT ANY
+             ADD "WAREHOUSE_ADDRESS" (any) OPT ANY
+             ADD "WAREHOUSE_CITY" (any) OPT ANY
+             ADD "WAREHOUSE_STATE" (any) OPT ANY
+             ADD "WAREHOUSE_REGION" (any) OPT ANY
+        )
+        OUTPUTLIST ("WAREHOUSE_ADDRESS", "WAREHOUSE_CITY", "WAREHOUSE_KEY", "WAREHOUSE_NAME", "WAREHOUSE_REGION", "WAREHOUSE_STATE"
+        )
+        WRAPPER (jdbc "bv_WAREHOUSE_DIMENSION")
+    );
+
