@@ -1,0 +1,129 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC baseview_for_remote_table_over_ds_ds
+    DATASOURCENAME=ds_ds
+    SCHEMANAME='${databases.vdbds.views.jdbc.baseview_for_remote_table_over_ds_ds.SCHEMANAME}' 
+    RELATIONNAME='REMOTE_TABLE_OVER_DS_DS' 
+    OUTPUTSCHEMA (
+        date_key = 'DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        product_key = 'PRODUCT_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        product_version = 'PRODUCT_VERSION' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        store_key = 'STORE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        customer_key = 'CUSTOMER_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        employee_key = 'EMPLOYEE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        pos_transaction_number = 'POS_TRANSACTION_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        sales_quantity = 'SALES_QUANTITY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        sales_dollar_amount = 'SALES_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        cost_dollar_amount = 'COST_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        gross_profit_dollar_amount = 'GROSS_PROFIT_DOLLAR_AMOUNT' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        transaction_type = 'TRANSACTION_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        transaction_time = 'TRANSACTION_TIME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        tender_type = 'TENDER_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='8', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        promotion_key = 'PROMOTION_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        promotion_name = 'PROMOTION_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='128', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        price_reduction_type = 'PRICE_REDUCTION_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        promotion_media_type = 'PROMOTION_MEDIA_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        ad_type = 'AD_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        display_type = 'DISPLAY_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        coupon_type = 'COUPON_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        ad_media_name = 'AD_MEDIA_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        display_provider = 'DISPLAY_PROVIDER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='128', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        promotion_cost = 'PROMOTION_COST' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        promotion_begin_date = 'PROMOTION_BEGIN_DATE' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='9', sourcetyperadix='10', sourcetypesize='11', sourcetypeid='1111', sourcetypename='TIMESTAMP(9)')  SORTABLE,
+        promotion_end_date = 'PROMOTION_END_DATE' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='9', sourcetyperadix='10', sourcetypesize='11', sourcetypeid='1111', sourcetypename='TIMESTAMP(9)')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE baseview_for_remote_table_over_ds_ds I18N au_cst (
+        date_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        product_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        product_version:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        store_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        customer_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        employee_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        pos_transaction_number:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        sales_quantity:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        sales_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        cost_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        gross_profit_dollar_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        transaction_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '16'),
+        transaction_time:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        tender_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '8'),
+        promotion_key:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        promotion_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '128'),
+        price_reduction_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        promotion_media_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        ad_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        display_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        coupon_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        ad_media_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        display_provider:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '128'),
+        promotion_cost:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        promotion_begin_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypedecimals = '9', sourcetypesize = '11'),
+        promotion_end_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypedecimals = '9', sourcetypesize = '11')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD baseview_for_remote_table_over_ds_ds(
+        I18N au_cst
+        CONSTRAINTS (
+             ADD date_key (any) OPT ANY
+             ADD product_key (any) OPT ANY
+             ADD product_version (any) OPT ANY
+             ADD store_key (any) OPT ANY
+             ADD customer_key (any) OPT ANY
+             ADD employee_key (any) OPT ANY
+             ADD pos_transaction_number (any) OPT ANY
+             ADD sales_quantity (any) OPT ANY
+             ADD sales_dollar_amount (any) OPT ANY
+             ADD cost_dollar_amount (any) OPT ANY
+             ADD gross_profit_dollar_amount (any) OPT ANY
+             ADD transaction_type (any) OPT ANY
+             ADD transaction_time (any) OPT ANY
+             ADD tender_type (any) OPT ANY
+             ADD promotion_key (any) OPT ANY
+             ADD promotion_name (any) OPT ANY
+             ADD price_reduction_type (any) OPT ANY
+             ADD promotion_media_type (any) OPT ANY
+             ADD ad_type (any) OPT ANY
+             ADD display_type (any) OPT ANY
+             ADD coupon_type (any) OPT ANY
+             ADD ad_media_name (any) OPT ANY
+             ADD display_provider (any) OPT ANY
+             ADD promotion_cost (any) OPT ANY
+             ADD promotion_begin_date (any) OPT ANY
+             ADD promotion_end_date (any) OPT ANY
+        )
+        OUTPUTLIST (ad_media_name, ad_type, cost_dollar_amount, coupon_type, customer_key, date_key, display_provider, display_type, employee_key, gross_profit_dollar_amount, pos_transaction_number, price_reduction_type, product_key, product_version, promotion_begin_date, promotion_cost, promotion_end_date, promotion_key, promotion_media_type, promotion_name, sales_dollar_amount, sales_quantity, store_key, tender_type, transaction_time, transaction_type
+        )
+        WRAPPER (jdbc baseview_for_remote_table_over_ds_ds)
+    )
+    DATA_LOAD_QUERY = 'SELECT
+     vdbde.TABLEA.DATE_KEY
+       ,vdbde.TABLEA.PRODUCT_KEY
+       ,vdbde.TABLEA.PRODUCT_VERSION
+       ,vdbde.TABLEA.STORE_KEY
+       ,vdbde.TABLEA.CUSTOMER_KEY
+       ,vdbde.TABLEA.EMPLOYEE_KEY
+       ,vdbde.TABLEA.POS_TRANSACTION_NUMBER
+       ,vdbde.TABLEA.SALES_QUANTITY
+       ,vdbde.TABLEA.SALES_DOLLAR_AMOUNT
+       ,vdbde.TABLEA.COST_DOLLAR_AMOUNT
+       ,vdbde.TABLEA.GROSS_PROFIT_DOLLAR_AMOUNT
+       ,vdbde.TABLEA.TRANSACTION_TYPE
+       ,vdbde.TABLEA.TRANSACTION_TIME
+       ,vdbde.TABLEA.TENDER_TYPE
+    ,vdbde.CODETABLEA.PROMOTION_KEY
+       ,vdbde.CODETABLEA.PROMOTION_NAME
+       ,vdbde.CODETABLEA.PRICE_REDUCTION_TYPE
+       ,vdbde.CODETABLEA.PROMOTION_MEDIA_TYPE
+       ,vdbde.CODETABLEA.AD_TYPE
+       ,vdbde.CODETABLEA.DISPLAY_TYPE
+       ,vdbde.CODETABLEA.COUPON_TYPE
+       ,vdbde.CODETABLEA.AD_MEDIA_NAME
+       ,vdbde.CODETABLEA.DISPLAY_PROVIDER
+       ,vdbde.CODETABLEA.PROMOTION_COST
+       ,vdbde.CODETABLEA.PROMOTION_BEGIN_DATE
+       ,vdbde.CODETABLEA.PROMOTION_END_DATE
+FROM vdbde.CODETABLEA,vdbde.TABLEA
+WHERE vdbde.CODETABLEA.PROMOTION_KEY = vdbde.TABLEA.PROMOTION_KEY limit 2000000 ;
+';
+
