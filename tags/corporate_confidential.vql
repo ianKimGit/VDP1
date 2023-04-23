@@ -1,3 +1,0 @@
-﻿CREATE OR REPLACE TAG corporate_confidential
-    DESCRIPTION = 'any object related to corporate confidential information should have this tag attached';
-
