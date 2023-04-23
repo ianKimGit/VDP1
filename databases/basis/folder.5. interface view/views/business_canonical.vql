@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE INTERFACE VIEW "business_Canonical" (
+        aa:text,
+        bb:text
+    )
+    SET IMPLEMENTATION "iv_INVENTORY_FACT"
+    FOLDER = '/5. interface view';
+
