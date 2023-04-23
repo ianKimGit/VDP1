@@ -1,0 +1,77 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_tempuser_ONLINE_SALES_FACT"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=ora2write4remote_table
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_tempuser_online_sales_fact.SCHEMANAME}' 
+    RELATIONNAME='ONLINE_SALES_FACT' 
+    OUTPUTSCHEMA (
+        "SALE_DATE_KEY" = 'SALE_DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "SHIP_DATE_KEY" = 'SHIP_DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "PRODUCT_KEY" = 'PRODUCT_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "PRODUCT_VERSION" = 'PRODUCT_VERSION' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "CUSTOMER_KEY" = 'CUSTOMER_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "CALL_CENTER_KEY" = 'CALL_CENTER_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "ONLINE_PAGE_KEY" = 'ONLINE_PAGE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "SHIPPING_KEY" = 'SHIPPING_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "WAREHOUSE_KEY" = 'WAREHOUSE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "PROMOTION_KEY" = 'PROMOTION_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "POS_TRANSACTION_NUMBER" = 'POS_TRANSACTION_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "SALES_QUANTITY" = 'SALES_QUANTITY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "SALES_DOLLAR_AMOUNT" = 'SALES_DOLLAR_AMOUNT' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        "SHIP_DOLLAR_AMOUNT" = 'SHIP_DOLLAR_AMOUNT' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        "NET_DOLLAR_AMOUNT" = 'NET_DOLLAR_AMOUNT' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        "COST_DOLLAR_AMOUNT" = 'COST_DOLLAR_AMOUNT' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        "GROSS_PROFIT_DOLLAR_AMOUNT" = 'GROSS_PROFIT_DOLLAR_AMOUNT' :'java.lang.Double' (OPT) (sourcetyperadix='10', sourcetypesize='126', sourcetypeid='6', sourcetypename='FLOAT')  SORTABLE,
+        "TRANSACTION_TYPE" = 'TRANSACTION_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE "bv_tempuser_ONLINE_SALES_FACT" I18N us_pst (
+        "SALE_DATE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SHIP_DATE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "PRODUCT_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "PRODUCT_VERSION":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CUSTOMER_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALL_CENTER_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "ONLINE_PAGE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SHIPPING_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "WAREHOUSE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "PROMOTION_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "POS_TRANSACTION_NUMBER":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SALES_QUANTITY":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SALES_DOLLAR_AMOUNT":double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        "SHIP_DOLLAR_AMOUNT":double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        "NET_DOLLAR_AMOUNT":double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        "COST_DOLLAR_AMOUNT":double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        "GROSS_PROFIT_DOLLAR_AMOUNT":double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypesize = '126'),
+        "TRANSACTION_TYPE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '16')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_tempuser_ONLINE_SALES_FACT"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "SALE_DATE_KEY" (any) OPT ANY
+             ADD "SHIP_DATE_KEY" (any) OPT ANY
+             ADD "PRODUCT_KEY" (any) OPT ANY
+             ADD "PRODUCT_VERSION" (any) OPT ANY
+             ADD "CUSTOMER_KEY" (any) OPT ANY
+             ADD "CALL_CENTER_KEY" (any) OPT ANY
+             ADD "ONLINE_PAGE_KEY" (any) OPT ANY
+             ADD "SHIPPING_KEY" (any) OPT ANY
+             ADD "WAREHOUSE_KEY" (any) OPT ANY
+             ADD "PROMOTION_KEY" (any) OPT ANY
+             ADD "POS_TRANSACTION_NUMBER" (any) OPT ANY
+             ADD "SALES_QUANTITY" (any) OPT ANY
+             ADD "SALES_DOLLAR_AMOUNT" (any) OPT ANY
+             ADD "SHIP_DOLLAR_AMOUNT" (any) OPT ANY
+             ADD "NET_DOLLAR_AMOUNT" (any) OPT ANY
+             ADD "COST_DOLLAR_AMOUNT" (any) OPT ANY
+             ADD "GROSS_PROFIT_DOLLAR_AMOUNT" (any) OPT ANY
+             ADD "TRANSACTION_TYPE" (any) OPT ANY
+        )
+        OUTPUTLIST ("CALL_CENTER_KEY", "COST_DOLLAR_AMOUNT", "CUSTOMER_KEY", "GROSS_PROFIT_DOLLAR_AMOUNT", "NET_DOLLAR_AMOUNT", "ONLINE_PAGE_KEY", "POS_TRANSACTION_NUMBER", "PRODUCT_KEY", "PRODUCT_VERSION", "PROMOTION_KEY", "SALES_DOLLAR_AMOUNT", "SALES_QUANTITY", "SALE_DATE_KEY", "SHIPPING_KEY", "SHIP_DATE_KEY", "SHIP_DOLLAR_AMOUNT", "TRANSACTION_TYPE", "WAREHOUSE_KEY"
+        )
+        WRAPPER (jdbc "bv_tempuser_ONLINE_SALES_FACT")
+    );
+

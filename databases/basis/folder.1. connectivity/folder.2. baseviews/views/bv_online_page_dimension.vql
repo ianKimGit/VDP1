@@ -1,0 +1,44 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_ONLINE_PAGE_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_online_page_dimension.SCHEMANAME}' 
+    RELATIONNAME='ONLINE_PAGE_DIMENSION' 
+    OUTPUTSCHEMA (
+        "ONLINE_PAGE_KEY" = 'ONLINE_PAGE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "START_DATE" = 'START_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "END_DATE" = 'END_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "PAGE_NUMBER" = 'PAGE_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "PAGE_DESCRIPTION" = 'PAGE_DESCRIPTION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "PAGE_TYPE" = 'PAGE_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007546' PRIMARY KEY ( 'ONLINE_PAGE_KEY' )
+    INDEX 'SYS_C007546' CLUSTER UNIQUE PRIMARY ( 'ONLINE_PAGE_KEY' );
+
+CREATE OR REPLACE TABLE "bv_ONLINE_PAGE_DIMENSION" I18N us_pst (
+        "ONLINE_PAGE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "START_DATE":timestamp,
+        "END_DATE":timestamp,
+        "PAGE_NUMBER":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "PAGE_DESCRIPTION":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        "PAGE_TYPE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007546' PRIMARY KEY ( 'ONLINE_PAGE_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_ONLINE_PAGE_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "ONLINE_PAGE_KEY" (any) OPT ANY
+             ADD "START_DATE" (any) OPT ANY
+             ADD "END_DATE" (any) OPT ANY
+             ADD "PAGE_NUMBER" (any) OPT ANY
+             ADD "PAGE_DESCRIPTION" (any) OPT ANY
+             ADD "PAGE_TYPE" (any) OPT ANY
+        )
+        OUTPUTLIST ("END_DATE", "ONLINE_PAGE_KEY", "PAGE_DESCRIPTION", "PAGE_NUMBER", "PAGE_TYPE", "START_DATE"
+        )
+        WRAPPER (jdbc "bv_ONLINE_PAGE_DIMENSION")
+    );
+

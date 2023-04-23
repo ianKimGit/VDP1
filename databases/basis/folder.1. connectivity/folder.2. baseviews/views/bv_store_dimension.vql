@@ -1,0 +1,80 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_STORE_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_store_dimension.SCHEMANAME}' 
+    RELATIONNAME='STORE_DIMENSION' 
+    OUTPUTSCHEMA (
+        "STORE_KEY" = 'STORE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "STORE_NAME" = 'STORE_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "STORE_NUMBER" = 'STORE_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "STORE_ADDRESS" = 'STORE_ADDRESS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='256', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "STORE_CITY" = 'STORE_CITY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "STORE_STATE" = 'STORE_STATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "STORE_REGION" = 'STORE_REGION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "FLOOR_PLAN_TYPE" = 'FLOOR_PLAN_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "PHOTO_PROCESSING_TYPE" = 'PHOTO_PROCESSING_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "FINANCIAL_SERVICE_TYPE" = 'FINANCIAL_SERVICE_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "SELLING_SQUARE_FOOTAGE" = 'SELLING_SQUARE_FOOTAGE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "TOTAL_SQUARE_FOOTAGE" = 'TOTAL_SQUARE_FOOTAGE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "FIRST_OPEN_DATE" = 'FIRST_OPEN_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "LAST_REMODEL_DATE" = 'LAST_REMODEL_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "NUMBER_OF_EMPLOYEES" = 'NUMBER_OF_EMPLOYEES' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "ANNUAL_SHRINKAGE" = 'ANNUAL_SHRINKAGE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "FOOT_TRAFFIC" = 'FOOT_TRAFFIC' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "MONTHLY_RENT_COST" = 'MONTHLY_RENT_COST' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007530' PRIMARY KEY ( 'STORE_KEY' )
+    INDEX 'SYS_C007530' CLUSTER UNIQUE PRIMARY ( 'STORE_KEY' );
+
+CREATE OR REPLACE TABLE "bv_STORE_DIMENSION" I18N us_pst (
+        "STORE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "STORE_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "STORE_NUMBER":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "STORE_ADDRESS":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '256'),
+        "STORE_CITY":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "STORE_STATE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '2'),
+        "STORE_REGION":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "FLOOR_PLAN_TYPE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        "PHOTO_PROCESSING_TYPE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        "FINANCIAL_SERVICE_TYPE":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        "SELLING_SQUARE_FOOTAGE":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "TOTAL_SQUARE_FOOTAGE":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "FIRST_OPEN_DATE":timestamp,
+        "LAST_REMODEL_DATE":timestamp,
+        "NUMBER_OF_EMPLOYEES":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "ANNUAL_SHRINKAGE":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "FOOT_TRAFFIC":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "MONTHLY_RENT_COST":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007530' PRIMARY KEY ( 'STORE_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_STORE_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "STORE_KEY" (any) OPT ANY
+             ADD "STORE_NAME" (any) OPT ANY
+             ADD "STORE_NUMBER" (any) OPT ANY
+             ADD "STORE_ADDRESS" (any) OPT ANY
+             ADD "STORE_CITY" (any) OPT ANY
+             ADD "STORE_STATE" (any) OPT ANY
+             ADD "STORE_REGION" (any) OPT ANY
+             ADD "FLOOR_PLAN_TYPE" (any) OPT ANY
+             ADD "PHOTO_PROCESSING_TYPE" (any) OPT ANY
+             ADD "FINANCIAL_SERVICE_TYPE" (any) OPT ANY
+             ADD "SELLING_SQUARE_FOOTAGE" (any) OPT ANY
+             ADD "TOTAL_SQUARE_FOOTAGE" (any) OPT ANY
+             ADD "FIRST_OPEN_DATE" (any) OPT ANY
+             ADD "LAST_REMODEL_DATE" (any) OPT ANY
+             ADD "NUMBER_OF_EMPLOYEES" (any) OPT ANY
+             ADD "ANNUAL_SHRINKAGE" (any) OPT ANY
+             ADD "FOOT_TRAFFIC" (any) OPT ANY
+             ADD "MONTHLY_RENT_COST" (any) OPT ANY
+        )
+        OUTPUTLIST ("ANNUAL_SHRINKAGE", "FINANCIAL_SERVICE_TYPE", "FIRST_OPEN_DATE", "FLOOR_PLAN_TYPE", "FOOT_TRAFFIC", "LAST_REMODEL_DATE", "MONTHLY_RENT_COST", "NUMBER_OF_EMPLOYEES", "PHOTO_PROCESSING_TYPE", "SELLING_SQUARE_FOOTAGE", "STORE_ADDRESS", "STORE_CITY", "STORE_KEY", "STORE_NAME", "STORE_NUMBER", "STORE_REGION", "STORE_STATE", "TOTAL_SQUARE_FOOTAGE"
+        )
+        WRAPPER (jdbc "bv_STORE_DIMENSION")
+    );
+

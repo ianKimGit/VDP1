@@ -1,0 +1,88 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_STORE_ORDERS_FACT"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_store_orders_fact.SCHEMANAME}' 
+    RELATIONNAME='STORE_ORDERS_FACT' 
+    OUTPUTSCHEMA (
+        "PRODUCT_KEY" = 'PRODUCT_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "PRODUCT_VERSION" = 'PRODUCT_VERSION' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "STORE_KEY" = 'STORE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "VENDOR_KEY" = 'VENDOR_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "EMPLOYEE_KEY" = 'EMPLOYEE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "ORDER_NUMBER" = 'ORDER_NUMBER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "DATE_ORDERED" = 'DATE_ORDERED' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "DATE_SHIPPED" = 'DATE_SHIPPED' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "EXPECTED_DELIVERY_DATE" = 'EXPECTED_DELIVERY_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "DATE_DELIVERED" = 'DATE_DELIVERED' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "QUANTITY_ORDERED" = 'QUANTITY_ORDERED' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "QUANTITY_DELIVERED" = 'QUANTITY_DELIVERED' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "SHIPPER_NAME" = 'SHIPPER_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "UNIT_PRICE" = 'UNIT_PRICE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "SHIPPING_COST" = 'SHIPPING_COST' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "TOTAL_ORDER_COST" = 'TOTAL_ORDER_COST' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "QUANTITY_IN_STOCK" = 'QUANTITY_IN_STOCK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "REORDER_LEVEL" = 'REORDER_LEVEL' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "OVERSTOCK_CEILING" = 'OVERSTOCK_CEILING' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    )
+    CONSTRAINT 'FK_STORE_ORDERS_EMPLOYEE' FOREIGN KEY ( 'EMPLOYEE_KEY' ) 
+    REFERENCES 'DVDEMO'.'EMPLOYEE_DIMENSION'( 'EMPLOYEE_KEY' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'FK_STORE_ORDERS_PRODUCT' FOREIGN KEY ( 'PRODUCT_KEY' , 'PRODUCT_VERSION' ) 
+    REFERENCES 'DVDEMO'.'PRODUCT_DIMENSION'( 'PRODUCT_KEY' , 'PRODUCT_VERSION' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'FK_STORE_ORDERS_STORE' FOREIGN KEY ( 'STORE_KEY' ) 
+    REFERENCES 'DVDEMO'.'STORE_DIMENSION'( 'STORE_KEY' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'FK_STORE_ORDERS_VENDOR' FOREIGN KEY ( 'VENDOR_KEY' ) 
+    REFERENCES 'DVDEMO'.'VENDOR_DIMENSION'( 'VENDOR_KEY' )  ON DELETE RESTRICT NOT DEFERRABLE ;
+
+CREATE OR REPLACE TABLE "bv_STORE_ORDERS_FACT" I18N us_pst (
+        "PRODUCT_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "PRODUCT_VERSION":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "STORE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "VENDOR_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "EMPLOYEE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "ORDER_NUMBER":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "DATE_ORDERED":timestamp,
+        "DATE_SHIPPED":timestamp,
+        "EXPECTED_DELIVERY_DATE":timestamp,
+        "DATE_DELIVERED":timestamp,
+        "QUANTITY_ORDERED":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "QUANTITY_DELIVERED":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SHIPPER_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        "UNIT_PRICE":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "SHIPPING_COST":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "TOTAL_ORDER_COST":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "QUANTITY_IN_STOCK":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "REORDER_LEVEL":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "OVERSTOCK_CEILING":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_STORE_ORDERS_FACT"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "PRODUCT_KEY" (any) OPT ANY
+             ADD "PRODUCT_VERSION" (any) OPT ANY
+             ADD "STORE_KEY" (any) OPT ANY
+             ADD "VENDOR_KEY" (any) OPT ANY
+             ADD "EMPLOYEE_KEY" (any) OPT ANY
+             ADD "ORDER_NUMBER" (any) OPT ANY
+             ADD "DATE_ORDERED" (any) OPT ANY
+             ADD "DATE_SHIPPED" (any) OPT ANY
+             ADD "EXPECTED_DELIVERY_DATE" (any) OPT ANY
+             ADD "DATE_DELIVERED" (any) OPT ANY
+             ADD "QUANTITY_ORDERED" (any) OPT ANY
+             ADD "QUANTITY_DELIVERED" (any) OPT ANY
+             ADD "SHIPPER_NAME" (any) OPT ANY
+             ADD "UNIT_PRICE" (any) OPT ANY
+             ADD "SHIPPING_COST" (any) OPT ANY
+             ADD "TOTAL_ORDER_COST" (any) OPT ANY
+             ADD "QUANTITY_IN_STOCK" (any) OPT ANY
+             ADD "REORDER_LEVEL" (any) OPT ANY
+             ADD "OVERSTOCK_CEILING" (any) OPT ANY
+        )
+        OUTPUTLIST ("DATE_DELIVERED", "DATE_ORDERED", "DATE_SHIPPED", "EMPLOYEE_KEY", "EXPECTED_DELIVERY_DATE", "ORDER_NUMBER", "OVERSTOCK_CEILING", "PRODUCT_KEY", "PRODUCT_VERSION", "QUANTITY_DELIVERED", "QUANTITY_IN_STOCK", "QUANTITY_ORDERED", "REORDER_LEVEL", "SHIPPER_NAME", "SHIPPING_COST", "STORE_KEY", "TOTAL_ORDER_COST", "UNIT_PRICE", "VENDOR_KEY"
+        )
+        WRAPPER (jdbc "bv_STORE_ORDERS_FACT")
+    );
+

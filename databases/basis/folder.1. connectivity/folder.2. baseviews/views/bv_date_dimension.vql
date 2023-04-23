@@ -1,0 +1,89 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_DATE_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_date_dimension.SCHEMANAME}' 
+    RELATIONNAME='DATE_DIMENSION' 
+    OUTPUTSCHEMA (
+        "DATE_KEY" = 'DATE_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "DATE_COL" = 'DATE_COL' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        "FULL_DATE_DESCRIPTION" = 'FULL_DATE_DESCRIPTION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='18', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "DAY_OF_WEEK" = 'DAY_OF_WEEK' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='9', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "DAY_NUMBER_IN_CALENDAR_MONTH" = 'DAY_NUMBER_IN_CALENDAR_MONTH' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "DAY_NUMBER_IN_CALENDAR_YEAR" = 'DAY_NUMBER_IN_CALENDAR_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "DAY_NUMBER_IN_FISCAL_MONTH" = 'DAY_NUMBER_IN_FISCAL_MONTH' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "DAY_NUMBER_IN_FISCAL_YEAR" = 'DAY_NUMBER_IN_FISCAL_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "LAST_DAY_IN_WEEK_INDICATOR" = 'LAST_DAY_IN_WEEK_INDICATOR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "LAST_DAY_IN_MONTH_INDICATOR" = 'LAST_DAY_IN_MONTH_INDICATOR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "CALENDAR_WEEK_NUMBER_IN_YEAR" = 'CALENDAR_WEEK_NUMBER_IN_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "CALENDAR_MONTH_NAME" = 'CALENDAR_MONTH_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='9', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "CALENDAR_MONTH_NUMBER_IN_YEAR" = 'CALENDAR_MONTH_NUMBER_IN_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "CALENDAR_YEAR_MONTH" = 'CALENDAR_YEAR_MONTH' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "CALENDAR_QUARTER" = 'CALENDAR_QUARTER' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "CALENDAR_YEAR_QUARTER" = 'CALENDAR_YEAR_QUARTER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "CALENDAR_HALF_YEAR" = 'CALENDAR_HALF_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "CALENDAR_YEAR" = 'CALENDAR_YEAR' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "HOLIDAY_INDICATOR" = 'HOLIDAY_INDICATOR' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "WEEKDAY_INDICATOR" = 'WEEKDAY_INDICATOR' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "SELLING_SEASON" = 'SELLING_SEASON' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007516' PRIMARY KEY ( 'DATE_KEY' )
+    INDEX 'SYS_C007516' CLUSTER UNIQUE PRIMARY ( 'DATE_KEY' );
+
+CREATE OR REPLACE TABLE "bv_DATE_DIMENSION" I18N us_pst (
+        "DATE_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "DATE_COL":timestamp,
+        "FULL_DATE_DESCRIPTION":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '18'),
+        "DAY_OF_WEEK":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '9'),
+        "DAY_NUMBER_IN_CALENDAR_MONTH":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "DAY_NUMBER_IN_CALENDAR_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "DAY_NUMBER_IN_FISCAL_MONTH":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "DAY_NUMBER_IN_FISCAL_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "LAST_DAY_IN_WEEK_INDICATOR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "LAST_DAY_IN_MONTH_INDICATOR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALENDAR_WEEK_NUMBER_IN_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALENDAR_MONTH_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '9'),
+        "CALENDAR_MONTH_NUMBER_IN_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALENDAR_YEAR_MONTH":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '7'),
+        "CALENDAR_QUARTER":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALENDAR_YEAR_QUARTER":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '7'),
+        "CALENDAR_HALF_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "CALENDAR_YEAR":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "HOLIDAY_INDICATOR":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        "WEEKDAY_INDICATOR":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '7'),
+        "SELLING_SEASON":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32')
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007516' PRIMARY KEY ( 'DATE_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_DATE_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "DATE_KEY" (any) OPT ANY
+             ADD "DATE_COL" (any) OPT ANY
+             ADD "FULL_DATE_DESCRIPTION" (any) OPT ANY
+             ADD "DAY_OF_WEEK" (any) OPT ANY
+             ADD "DAY_NUMBER_IN_CALENDAR_MONTH" (any) OPT ANY
+             ADD "DAY_NUMBER_IN_CALENDAR_YEAR" (any) OPT ANY
+             ADD "DAY_NUMBER_IN_FISCAL_MONTH" (any) OPT ANY
+             ADD "DAY_NUMBER_IN_FISCAL_YEAR" (any) OPT ANY
+             ADD "LAST_DAY_IN_WEEK_INDICATOR" (any) OPT ANY
+             ADD "LAST_DAY_IN_MONTH_INDICATOR" (any) OPT ANY
+             ADD "CALENDAR_WEEK_NUMBER_IN_YEAR" (any) OPT ANY
+             ADD "CALENDAR_MONTH_NAME" (any) OPT ANY
+             ADD "CALENDAR_MONTH_NUMBER_IN_YEAR" (any) OPT ANY
+             ADD "CALENDAR_YEAR_MONTH" (any) OPT ANY
+             ADD "CALENDAR_QUARTER" (any) OPT ANY
+             ADD "CALENDAR_YEAR_QUARTER" (any) OPT ANY
+             ADD "CALENDAR_HALF_YEAR" (any) OPT ANY
+             ADD "CALENDAR_YEAR" (any) OPT ANY
+             ADD "HOLIDAY_INDICATOR" (any) OPT ANY
+             ADD "WEEKDAY_INDICATOR" (any) OPT ANY
+             ADD "SELLING_SEASON" (any) OPT ANY
+        )
+        OUTPUTLIST ("CALENDAR_HALF_YEAR", "CALENDAR_MONTH_NAME", "CALENDAR_MONTH_NUMBER_IN_YEAR", "CALENDAR_QUARTER", "CALENDAR_WEEK_NUMBER_IN_YEAR", "CALENDAR_YEAR", "CALENDAR_YEAR_MONTH", "CALENDAR_YEAR_QUARTER", "DATE_COL", "DATE_KEY", "DAY_NUMBER_IN_CALENDAR_MONTH", "DAY_NUMBER_IN_CALENDAR_YEAR", "DAY_NUMBER_IN_FISCAL_MONTH", "DAY_NUMBER_IN_FISCAL_YEAR", "DAY_OF_WEEK", "FULL_DATE_DESCRIPTION", "HOLIDAY_INDICATOR", "LAST_DAY_IN_MONTH_INDICATOR", "LAST_DAY_IN_WEEK_INDICATOR", "SELLING_SEASON", "WEEKDAY_INDICATOR"
+        )
+        WRAPPER (jdbc "bv_DATE_DIMENSION")
+    );
+

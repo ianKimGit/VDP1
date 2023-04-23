@@ -1,0 +1,50 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_VENDOR_DIMENSION"
+    FOLDER = '/1. connectivity/2. baseviews'
+    DATASOURCENAME=orabasis
+    SCHEMANAME='${databases.basis.folder.1.. connectivity.folder.2.. baseviews.views.jdbc.bv_vendor_dimension.SCHEMANAME}' 
+    RELATIONNAME='VENDOR_DIMENSION' 
+    OUTPUTSCHEMA (
+        "VENDOR_KEY" = 'VENDOR_KEY' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        "VENDOR_NAME" = 'VENDOR_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "VENDOR_ADDRESS" = 'VENDOR_ADDRESS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "VENDOR_CITY" = 'VENDOR_CITY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "VENDOR_STATE" = 'VENDOR_STATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        "VENDOR_REGION" = 'VENDOR_REGION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='32', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        "DEAL_SIZE" = 'DEAL_SIZE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        "LAST_DEAL_UPDATE" = 'LAST_DEAL_UPDATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007518' PRIMARY KEY ( 'VENDOR_KEY' )
+    INDEX 'SYS_C007518' CLUSTER UNIQUE PRIMARY ( 'VENDOR_KEY' );
+
+CREATE OR REPLACE TABLE "bv_VENDOR_DIMENSION" I18N us_pst (
+        "VENDOR_KEY":decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "VENDOR_NAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "VENDOR_ADDRESS":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "VENDOR_CITY":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '64'),
+        "VENDOR_STATE":text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '2'),
+        "VENDOR_REGION":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '32'),
+        "DEAL_SIZE":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        "LAST_DEAL_UPDATE":timestamp
+    )
+    FOLDER = '/1. connectivity/2. baseviews'
+    CONSTRAINT 'SYS_C007518' PRIMARY KEY ( 'VENDOR_KEY' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_VENDOR_DIMENSION"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "VENDOR_KEY" (any) OPT ANY
+             ADD "VENDOR_NAME" (any) OPT ANY
+             ADD "VENDOR_ADDRESS" (any) OPT ANY
+             ADD "VENDOR_CITY" (any) OPT ANY
+             ADD "VENDOR_STATE" (any) OPT ANY
+             ADD "VENDOR_REGION" (any) OPT ANY
+             ADD "DEAL_SIZE" (any) OPT ANY
+             ADD "LAST_DEAL_UPDATE" (any) OPT ANY
+        )
+        OUTPUTLIST ("DEAL_SIZE", "LAST_DEAL_UPDATE", "VENDOR_ADDRESS", "VENDOR_CITY", "VENDOR_KEY", "VENDOR_NAME", "VENDOR_REGION", "VENDOR_STATE"
+        )
+        WRAPPER (jdbc "bv_VENDOR_DIMENSION")
+    );
+
